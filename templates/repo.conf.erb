@@ -1,0 +1,27 @@
+[main]
+cachedir=/var/cache/yum/<%= @os.split(/(\d+)/)[0] %>/<%= @os.split(/(\d+)/)[1] %>
+keepcache=0
+debuglevel=2
+logfile=/var/log/yum.log
+exactarch=1
+obsoletes=1
+gpgcheck=1
+plugins=1
+
+<% @repos_os.each do |repo, info |  -%>
+[<%= repo %>]
+name=<%= @os.split("-")[0] %> - <%= repo %>
+<% if info.has_key?('baseurl') -%>
+baseurl=<%= info['baseurl'] %>
+<% end -%>
+<% if info.has_key?('enabled') -%>
+enabled=<%= info['enabled'] %>
+<% end -%>
+<% if info.has_key?('gpgkey') -%>
+gpgcheck=1
+gpgkey=<%= info['gpgkey'] %>
+<% else -%>
+gpgcheck=0
+<% end -%>
+
+<% end -%>
