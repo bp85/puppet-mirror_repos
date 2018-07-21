@@ -2,4 +2,4 @@ fixtures:
   repositories:
     stdlib: "https://github.com/puppetlabs/puppetlabs-apache.git"
   symlinks:
-    apache: "#{source_dir}"
+    apache: "#{source_dir}/modules/apache"
