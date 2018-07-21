@@ -1,3 +1,4 @@
+#class to manage vhost
 class mirror_repos::apache {
   if $mirror_repos::manage_vhost {
     include ::apache

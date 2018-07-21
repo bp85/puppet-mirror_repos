@@ -1,3 +1,4 @@
+#mirror_repos parameters
 class mirror_repos::params {
   case $::osfamily {
     'RedHat': {
