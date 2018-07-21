@@ -2,5 +2,4 @@ fixtures:
   forge_modules:
     apache:
       repo: 'puppetlabs/apache'
-  symlinks:
-    apache: "#{source_dir}/spec/fixtures/modules/apache"
+      ref: '1.11.0'
