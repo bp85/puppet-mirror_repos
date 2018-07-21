@@ -7,6 +7,7 @@ describe 'mirror_repos' do
       let(:facts) do
         facts
       end
+
       it { is_expected.to compile.with_all_deps }
     end
   end
