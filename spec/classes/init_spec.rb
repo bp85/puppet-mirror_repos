@@ -8,8 +8,7 @@ describe 'mirror_repos' do
         facts
       end
 
-      it { is_expected.to contain_class('::apache') }
-      it { is_expected.to compile.with_all_deps }
+      it { is_expected.to compile }
     end
   end
 end
