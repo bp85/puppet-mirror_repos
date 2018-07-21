@@ -37,13 +37,13 @@
         "6",
         "7"
       ]
-    },
-    ]
+    }
+  ],
   "requirements": [
     {
       "name": "puppet",
       "version_requirement": ">= 3.0.0 < 6.0.0"
     }
-  ]
-  "data_provider": hiera
+  ],
+  "data_provider": null
 }
