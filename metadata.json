@@ -1,6 +1,6 @@
 {
   "name": "bp85-mirror_repos",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "bp85",
   "summary": "Mirror yum repositories to local + and create yum repos from those",
   "license": "Apache-2.0",
