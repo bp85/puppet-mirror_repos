@@ -1,5 +1,6 @@
 fixtures:
-  repositories:
-    stdlib: "https://github.com/puppetlabs/puppetlabs-apache.git"
+  forge_modules:
+    apache:
+      repo: 'puppetlabs/apache'
   symlinks:
     apache: "#{source_dir}/spec/fixtures/modules/apache"
