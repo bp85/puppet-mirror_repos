@@ -19,12 +19,16 @@ This module copy all available rpms from given repo_source using reposync and
 then create repository using createrepo from all rpms.
 
 ## Setup
+`include ::mirror_repos`
 
 Repo configuration should be a Hash in following format
 `mirror_repos::repos:` must be followed by `OS-ARCH` and then
 name of the repo and configuration of repo
 
 ### Beginning with mirror_repos
+
+Add the following in your class
+`include ::mirror_repos`
 
 This module copy a bash script `update-repos` to /usr/sbin.
 This script runs every night to sync remote repos.
