@@ -106,7 +106,7 @@ for OS in ${OSES[@]}; do
     [ $REPOS ] && REPOS_<%= os.split('-').join('_') %>=( $(echo "$REPOS" |sed 's/,/ /g') )
     [ ${REPOS_<%= os.split('-').join('_') %>} ] || REPOS_<%= os.split('-').join('_') %>=( <%= scope.lookupvar('mirror_repos::repos')[os].keys.join(" ") %> )
     <% end -%>
-    OS=$(echo $OS | sed 's/-/_/')
+    OS=$(echo $OS | sed 's/-/_/g')
     #now define a new array, because substrings won't perform well in for loop
     REPOS_OS=$(eval echo \${REPOS_${OS}[*]})
     if [ ${VERBOSE} == 'False' ]; then
