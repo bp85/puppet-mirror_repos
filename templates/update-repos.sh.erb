@@ -53,10 +53,13 @@ main(){
 
 
             #sync remote repos to local directories
-	    <% if @operatingsystemmajrelease < 8 -%>
+	    <% if @operatingsystemmajrelease == '6' -%>
             	$REPOSYNC_CMD -q -l -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download_path=$REPOS_DIR/$OS/
 	    <% end -%>
-	    <% if @operatingsystemmajrelease >= 8 -%>
+	    <% if @operatingsystemmajrelease == '7' -%>
+            	$REPOSYNC_CMD -q -l -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download_path=$REPOS_DIR/$OS/
+	    <% end -%>
+	    <% if @operatingsystemmajrelease == '8' -%>
                 $REPOSYNC_CMD -q -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download-path=$REPOS_DIR/$OS/
 	    <% end -%>
 
