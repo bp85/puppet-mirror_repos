@@ -1,6 +1,6 @@
 {
   "name": "bp85-mirror_repos",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "author": "bp85",
   "summary": "Mirror yum repositories to local + and create yum repos from those",
   "license": "Apache-2.0",
@@ -10,11 +10,11 @@
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 3.0.0 < 5.0.0"
+      "version_requirement": ">= 3.0.0 < 6.0.0"
     },
     {
       "name": "puppetlabs-apache",
-      "version_requirement": ">=1.11.0 < 3.0.0"
+      "version_requirement": ">=1.11.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -22,21 +22,23 @@
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.0.0 < 6.0.0"
+      "version_requirement": ">= 4.0.0 < 7.0.0"
     }
   ],
   "tags": [
