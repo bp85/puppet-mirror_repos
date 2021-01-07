@@ -7,3 +7,5 @@ fixtures:
       repo: 'puppetlabs/stdlib'
     concat:
       repo: 'puppetlabs-concat'
+    cron:
+      repo: 'puppetlabs-cron_core'
