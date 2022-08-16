@@ -23,5 +23,8 @@ gpgkey=<%= info['gpgkey'] %>
 <% else -%>
 gpgcheck=0
 <% end -%>
+<% if info.has_key?('proxy') -%>
+proxy=<%= info['proxy'] %>
+<% end -%>
 
 <% end -%>
