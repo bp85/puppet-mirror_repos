@@ -24,7 +24,7 @@ class mirror_repos::config {
     content => template('mirror_repos/update-repos.sh.erb'),
   }
   #run cron every night to update repos
-  cron { 'update-repos':
+  cron::job { 'update-repos':
     command => '/usr/sbin/update-repos',
     user    => 'root',
     hour    => 1,
