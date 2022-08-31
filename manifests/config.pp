@@ -17,6 +17,7 @@ class mirror_repos::config {
     }
   }
   $oses = keys($mirror_repos::repos)
+  $createrepo_additional_options = $mirror_repos::createrepo_options.join(' ')
   #copy file to update repos to localhost
   file { '/usr/sbin/update-repos':
     ensure  => file,

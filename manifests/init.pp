@@ -24,6 +24,11 @@
 # repositories to mirror
 # Default is empty
 #
+# * `mirror_repos::createrepo_options`
+# Options to add to the createrepo command in `update-repo` bash script.
+# Must be an array containing options, for example
+#   $createrepo_options = [ '--local-sqlite' ]
+#
 # Examples
 # ####
 # --------
@@ -35,12 +40,13 @@
 #
 #
 class mirror_repos (
-    Array $packages       = $mirror_repos::params::packages,
-    Hash $repos           = $mirror_repos::params::repos,
-    Hash $vhosts          = $mirror_repos::params::vhosts,
-    String $config_dir    = $mirror_repos::params::config_dir,
-    String $repos_dir     = $mirror_repos::params::repos_dir,
-    Boolean $manage_vhost = $mirror_repos::params::manage_vhost,
+    Array $packages           = $mirror_repos::params::packages,
+    Hash $repos               = $mirror_repos::params::repos,
+    Hash $vhosts              = $mirror_repos::params::vhosts,
+    String $config_dir        = $mirror_repos::params::config_dir,
+    String $repos_dir         = $mirror_repos::params::repos_dir,
+    Boolean $manage_vhost     = $mirror_repos::params::manage_vhost,
+    Array $createrepo_options = $mirror_repos::params::createrepo_options,
   ) inherits mirror_repos::params {
 
     class { '::mirror_repos::install': }

@@ -63,7 +63,7 @@ main(){
 	    <% end -%>
 
             #create yum repository from local synced directories
-            $CREATEREPO_CMD --workers=8 --update $REPOS_DIR/$OS/$REPO
+            $CREATEREPO_CMD --workers=8 --update $REPOS_DIR/$OS/$REPO <%= @createrepo_additional_options %>
         done
         #reset REPOS for next OS
         REPOS_OS=''
