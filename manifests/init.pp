@@ -42,7 +42,7 @@ class mirror_repos (
     String $repos_dir     = $mirror_repos::params::repos_dir,
     Boolean $manage_vhost = $mirror_repos::params::manage_vhost,
     Optional[Stdlib::HTTPUrl] $proxy                            = undef,
-    Optional[String] $proxy_user                                = undef,
+    Optional[String] $proxy_username                            = undef,
     Optional[Variant[String,Sensitive[String]]] $proxy_password = undef,
   ) inherits mirror_repos::params {
 
