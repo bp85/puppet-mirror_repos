@@ -13,7 +13,10 @@ class mirror_repos::config {
     file {"${mirror_repos::config_dir}/${os}.conf":
       ensure  => 'file',
       mode    => '0644',
-      content => template('mirror_repos/repo.conf.erb'),
+      content => epp('mirror_repos/repo.conf.epp',{
+          os       => $os,
+          repos_os => $repos_os,
+      }),
     }
   }
   $oses = keys($mirror_repos::repos)
