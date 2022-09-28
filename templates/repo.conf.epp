@@ -30,5 +30,11 @@ gpgcheck=0
 <% if $info.has_key('proxy') { -%>
 proxy=<%= $info['proxy'] %>
 <% } -%>
+<% if $info.has_key('proxy_username') { -%>
+proxy_username=<%= $info['proxy_username'] %>
+<% } -%>
+<% if $info.has_key('proxy_password') { -%>
+proxy_password=<%= $info['proxy_password'] %>
+<% } -%>
 
 <% } -%>
