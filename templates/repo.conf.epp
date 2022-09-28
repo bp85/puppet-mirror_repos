@@ -1,6 +1,9 @@
 <%- |
   String $os,
   Hash $repos_os,
+  Stdlib::HTTPUrl proxy,
+  String proxy_username,
+  Sensitive[String] proxy_password,
 | -%>
 [main]
 cachedir=/var/cache/yum/<%= $os.split(/(\d+)/)[0] %>/<%= $os.split(/(\d+)/)[1] %>
@@ -11,6 +14,15 @@ exactarch=1
 obsoletes=1
 gpgcheck=1
 plugins=1
+<% if $proxy { -%>
+proxy=<%= $proxy %>
+<% } -%>
+<% if $proxy_username { -%>
+proxy_username=<%= $proxy_username %>
+<% } -%>
+<% if $proxy_password { -%>
+proxy_password=<%= $proxy_password %>
+<% } -%>
 
 <% $repos_os.each |$repo,$info| { -%>
 [<%= $repo %>]

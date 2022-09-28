@@ -14,8 +14,11 @@ class mirror_repos::config {
       ensure  => 'file',
       mode    => '0644',
       content => epp('mirror_repos/repo.conf.epp',{
-          os       => $os,
-          repos_os => $repos_os,
+          os             => $os,
+          repos_os       => $repos_os,
+          proxy          => $mirror_repos::proxy,
+          proxy_username => $mirror_repos::proxy_username,
+          proxy_password => $mirror_repos::proxy_password,
       }),
     }
   }
