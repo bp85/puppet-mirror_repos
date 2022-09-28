@@ -1,9 +1,9 @@
 <%- |
   String $os,
   Hash $repos_os,
-  Stdlib::HTTPUrl proxy,
-  String proxy_username,
-  Sensitive[String] proxy_password,
+  Stdlib::HTTPUrl $proxy,
+  String $proxy_username,
+  Sensitive[String] $proxy_password,
 | -%>
 [main]
 cachedir=/var/cache/yum/<%= $os.split(/(\d+)/)[0] %>/<%= $os.split(/(\d+)/)[1] %>
