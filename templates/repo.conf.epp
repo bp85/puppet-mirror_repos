@@ -48,5 +48,12 @@ proxy_username=<%= $info['proxy_username'] %>
 <% if $info.has_key('proxy_password') { -%>
 proxy_password=<%= $info['proxy_password'] %>
 <% } -%>
+<% if $info.has_key('exclude') { -%>
+<% if $info['exclude'] =~ String { -%>
+exclude=<%= $info['exclude'] %>
+<% } elsif $info['exclude'] =~ Array { -%>
+exclude=<%= $info['exclude'].join(',') %>
+<% } -%>
+<% } -%>
 
 <% } -%>
