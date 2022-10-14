@@ -29,15 +29,37 @@ class mirror_repos::config {
     mode    => '0755',
     content => template('mirror_repos/update-repos.sh.erb'),
   }
-  #run cron every night to update repos
-  cron::job { 'update-repos':
-    command => '/usr/sbin/update-repos',
-    user    => 'root',
-    require => File['/usr/sbin/update-repos'],
-    minute  => $mirror_repos::cron_minute,
-    hour    => $mirror_repos::cron_hour,
-    date    => $mirror_repos::cron_date,
-    month   => $mirror_repos::cron_month,
-    weekday => $mirror_repos::cron_weekday,
+
+  #If legacy cron job (/etc/cron.d) is preferred
+  if $mirror_repos::legacy_cron {
+    #run cron every night to update repos
+    cron::job { 'update-repos':
+      command => '/usr/sbin/update-repos',
+      user    => 'root',
+      require => File['/usr/sbin/update-repos'],
+      minute  => $mirror_repos::cron_minute,
+      hour    => $mirror_repos::cron_hour,
+      date    => $mirror_repos::cron_date,
+      month   => $mirror_repos::cron_month,
+      weekday => $mirror_repos::cron_weekday,
+    }
+
+    # disable crontab job
+    cron { 'update-repos':
+      ensure  => absent,
+      command => '/usr/sbin/update-repos',
+      user    => 'root',
+    }
+  } else {
+    cron { 'update-repos':
+      command => '/usr/sbin/update-repos',
+      user    => 'root',
+      hour    => $mirror_repos::cron_hour,
+      minute  => $mirror_repos::cron_minute,
+      date    => $mirror_repos::cron_date,
+      month   => $mirror_repos::cron_month,
+      weekday => $mirror_repos::cron_weekday,
+      require => File['/usr/sbin/update-repos'],
+    }
   }
 }
