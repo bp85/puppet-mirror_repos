@@ -30,11 +30,14 @@ class mirror_repos::config {
     content => template('mirror_repos/update-repos.sh.erb'),
   }
   #run cron every night to update repos
-  cron { 'update-repos':
+  cron::job { 'update-repos':
     command => '/usr/sbin/update-repos',
     user    => 'root',
-    hour    => 1,
-    minute  => 0,
     require => File['/usr/sbin/update-repos'],
+    minute  => $mirror_repos::cron_minute,
+    hour    => $mirror_repos::cron_hour,
+    date    => $mirror_repos::cron_date,
+    month   => $mirror_repos::cron_month,
+    weekday => $mirror_repos::cron_weekday,
   }
 }
