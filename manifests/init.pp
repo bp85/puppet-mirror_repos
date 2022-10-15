@@ -42,6 +42,15 @@ class mirror_repos (
     String $repos_dir          = $mirror_repos::params::repos_dir,
     Boolean $manage_vhost      = $mirror_repos::params::manage_vhost,
     Boolean $download_metadata = $mirror_repos::params::download_metadata,
+    Boolean $legacy_cron       = $mirror_repos::params::legacy_cron,
+    String $cron_minute        = $mirror_repos::params::cron_minute,
+    String $cron_hour          = $mirror_repos::params::cron_hour,
+    String $cron_date          = $mirror_repos::params::cron_date,
+    String $cron_month         = $mirror_repos::params::cron_month,
+    String $cron_weekday       = $mirror_repos::params::cron_weekday,
+    Optional[Stdlib::HTTPUrl] $proxy                            = undef,
+    Optional[String] $proxy_username                            = undef,
+    Optional[Variant[String,Sensitive[String]]] $proxy_password = undef,
   ) inherits mirror_repos::params {
 
     class { '::mirror_repos::install': }

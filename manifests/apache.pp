@@ -6,7 +6,7 @@ class mirror_repos::apache {
 
     if $mirror_repos::vhosts == {} {
       apache::vhost { $::fqdn:
-        port    => '80',
+        port    => 80,
         docroot => $mirror_repos::repos_dir,
       }
     }
