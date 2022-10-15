@@ -23,6 +23,7 @@ class mirror_repos::config {
     }
   }
   $oses = keys($mirror_repos::repos)
+  $createrepo_additional_options = $mirror_repos::createrepo_options.join(' ')
   $download_metadata_option = $mirror_repos::download_metadata ? {
     true  => '--download-metadata',
     false => '',

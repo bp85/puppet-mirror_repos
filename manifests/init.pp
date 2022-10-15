@@ -24,6 +24,11 @@
 # repositories to mirror
 # Default is empty
 #
+# * `mirror_repos::createrepo_options`
+# Options to add to the createrepo command in `update-repo` bash script.
+# Must be an array containing options, for example
+#   $createrepo_options = [ '--local-sqlite' ]
+#
 # Examples
 # ####
 # --------
@@ -41,6 +46,7 @@ class mirror_repos (
     String $config_dir         = $mirror_repos::params::config_dir,
     String $repos_dir          = $mirror_repos::params::repos_dir,
     Boolean $manage_vhost      = $mirror_repos::params::manage_vhost,
+    Array $createrepo_options  = $mirror_repos::params::createrepo_options,
     Boolean $download_metadata = $mirror_repos::params::download_metadata,
     Boolean $legacy_cron       = $mirror_repos::params::legacy_cron,
     String $cron_minute        = $mirror_repos::params::cron_minute,
