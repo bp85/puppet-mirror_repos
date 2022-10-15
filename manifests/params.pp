@@ -10,7 +10,7 @@ class mirror_repos::params {
               $repos              = {}
               $createrepo_options = []
               $download_metadata  = false
-              $legacy_cron        = false,
+              $legacy_cron        = false
               $cron_minute        = '0'
               $cron_hour          = '1'
               $cron_date          = '*'
