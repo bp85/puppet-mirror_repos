@@ -55,6 +55,7 @@ mirror_repos::repos:
 ```
 
 ## Reference
+[reference](REFERENCE.md)
 
 #### Parameters
 
