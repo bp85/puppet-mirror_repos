@@ -52,15 +52,15 @@ main(){
             yum clean all >& /dev/null
 
             #sync remote repos to local directories
-	    <% if @operatingsystemmajrelease == '6' -%>
-            	$REPOSYNC_CMD -q -l -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download_path=$REPOS_DIR/$OS/
-	    <% end -%>
-	    <% if @operatingsystemmajrelease == '7' -%>
-            	$REPOSYNC_CMD -q -l -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download_path=$REPOS_DIR/$OS/
-	    <% end -%>
-	    <% if @operatingsystemmajrelease == '8' -%>
-                $REPOSYNC_CMD -q -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download-path=$REPOS_DIR/$OS/
-	    <% end -%>
+            <% if @operatingsystemmajrelease == '6' -%>
+                $REPOSYNC_CMD -q -l -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download_path=$REPOS_DIR/$OS/
+            <% end -%>
+            <% if @operatingsystemmajrelease == '7' -%>
+                $REPOSYNC_CMD -q -l -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download_path=$REPOS_DIR/$OS/ <%= @download_metadata_option -%>
+            <% end -%>
+            <% if @operatingsystemmajrelease == '8' -%>
+                $REPOSYNC_CMD -q -c $CONFIG_DIR/$OS.conf --repoid=$REPO --download-path=$REPOS_DIR/$OS/ <%= @download_metadata_option -%>
+            <% end -%>
 
             #create yum repository from local synced directories
             $CREATEREPO_CMD --workers=8 --update $REPOS_DIR/$OS/$REPO

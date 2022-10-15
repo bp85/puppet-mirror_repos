@@ -23,6 +23,10 @@ class mirror_repos::config {
     }
   }
   $oses = keys($mirror_repos::repos)
+  $download_metadata_option = $mirror_repos::download_metadata ? {
+    true  => '--download-metadata',
+    false => '',
+  }
   #copy file to update repos to localhost
   file { '/usr/sbin/update-repos':
     ensure  => file,
