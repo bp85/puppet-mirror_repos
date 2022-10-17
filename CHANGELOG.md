@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Add exclude option to repo [\#13](https://github.com/bp85/puppet-mirror_repos/issues/13)
 - Problem sed and update-repos.sh script [\#2](https://github.com/bp85/puppet-mirror_repos/issues/2)
 
 **Merged pull requests:**
