@@ -54,6 +54,7 @@ class mirror_repos (
     String $cron_date          = $mirror_repos::params::cron_date,
     String $cron_month         = $mirror_repos::params::cron_month,
     String $cron_weekday       = $mirror_repos::params::cron_weekday,
+    String $cron_target        = $mirror_repos::params::cron_target,
     Optional[Stdlib::HTTPUrl] $proxy                            = undef,
     Optional[String] $proxy_username                            = undef,
     Optional[Variant[String,Sensitive[String]]] $proxy_password = undef,

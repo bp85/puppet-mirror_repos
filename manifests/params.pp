@@ -16,6 +16,7 @@ class mirror_repos::params {
               $cron_date          = '*'
               $cron_month         = '*'
               $cron_weekday       = '*'
+              $cron_target        = undef
     }
     default: {
               fail("${::operatingsystem} not supported")
