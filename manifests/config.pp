@@ -13,22 +13,58 @@ class mirror_repos::config {
     file {"${mirror_repos::config_dir}/${os}.conf":
       ensure  => 'file',
       mode    => '0644',
-      content => template('mirror_repos/repo.conf.erb'),
+      content => epp('mirror_repos/repo.conf.epp',{
+          os             => $os,
+          repos_os       => $repos_os,
+          proxy          => $mirror_repos::proxy,
+          proxy_username => $mirror_repos::proxy_username,
+          proxy_password => $mirror_repos::proxy_password,
+      }),
     }
   }
   $oses = keys($mirror_repos::repos)
+  $createrepo_additional_options = $mirror_repos::createrepo_options.join(' ')
+  $download_metadata_option = $mirror_repos::download_metadata ? {
+    true  => '--download-metadata',
+    false => '',
+  }
   #copy file to update repos to localhost
   file { '/usr/sbin/update-repos':
     ensure  => file,
     mode    => '0755',
     content => template('mirror_repos/update-repos.sh.erb'),
   }
-  #run cron every night to update repos
-  cron { 'update-repos':
-    command => '/usr/sbin/update-repos',
-    user    => 'root',
-    hour    => 1,
-    minute  => 0,
-    require => File['/usr/sbin/update-repos'],
+
+  #If legacy cron job (/etc/cron.d) is preferred
+  if $mirror_repos::legacy_cron {
+    #run cron every night to update repos
+    cron::job { 'update-repos':
+      command => '/usr/sbin/update-repos',
+      user    => 'root',
+      require => File['/usr/sbin/update-repos'],
+      minute  => $mirror_repos::cron_minute,
+      hour    => $mirror_repos::cron_hour,
+      date    => $mirror_repos::cron_date,
+      month   => $mirror_repos::cron_month,
+      weekday => $mirror_repos::cron_weekday,
+    }
+
+    # disable crontab job
+    cron { 'update-repos':
+      ensure  => absent,
+      command => '/usr/sbin/update-repos',
+      user    => 'root',
+    }
+  } else {
+    cron { 'update-repos':
+      command => '/usr/sbin/update-repos',
+      user    => 'root',
+      hour    => $mirror_repos::cron_hour,
+      minute  => $mirror_repos::cron_minute,
+      date    => $mirror_repos::cron_date,
+      month   => $mirror_repos::cron_month,
+      weekday => $mirror_repos::cron_weekday,
+      require => File['/usr/sbin/update-repos'],
+    }
   }
 }
