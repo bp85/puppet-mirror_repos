@@ -48,6 +48,7 @@ class mirror_repos (
     Boolean $manage_vhost      = $mirror_repos::params::manage_vhost,
     Array $createrepo_options  = $mirror_repos::params::createrepo_options,
     Boolean $download_metadata = $mirror_repos::params::download_metadata,
+    Boolean $delete_old        = $mirror_repos::params::delete_old,
     Boolean $legacy_cron       = $mirror_repos::params::legacy_cron,
     String $cron_minute        = $mirror_repos::params::cron_minute,
     String $cron_hour          = $mirror_repos::params::cron_hour,

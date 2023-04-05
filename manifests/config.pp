@@ -28,6 +28,10 @@ class mirror_repos::config {
     true  => '--download-metadata',
     false => '',
   }
+  $delete_old_option = $mirror_repos::delete_old ? {
+    true  => '--delete',
+    false => '',
+  }
   #copy file to update repos to localhost
   file { '/usr/sbin/update-repos':
     ensure  => file,
