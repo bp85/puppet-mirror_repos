@@ -1,6 +1,6 @@
 #mirror_repos parameters
 class mirror_repos::params {
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
               $packages     = ['createrepo', 'yum-utils']
               $manage_vhost = true
@@ -10,7 +10,7 @@ class mirror_repos::params {
               $repos        = {}
     }
     default: {
-              fail("${::operatingsystem} not supported")
+              fail("${facts['os']['name']} not supported")
     }
   }
 }
