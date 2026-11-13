@@ -27,28 +27,28 @@ proxy_password=<%= $proxy_password %>
 <% $repos_os.each |$repo,$info| { -%>
 [<%= $repo %>]
 name=<%= $os.split("-")[0] %> - <%= $repo %>
-<% if $info.has_key('baseurl') { -%>
+<% if 'baseurl' in $info { -%>
 baseurl=<%= $info['baseurl'] %>
 <% } -%>
-<% if $info.has_key('enabled') { -%>
+<% if 'enabled' in $info { -%>
 enabled=<%= $info['enabled'] %>
 <% } -%>
-<% if $info.has_key('gpgkey') { -%>
+<% if 'gpgkey' in $info { -%>
 gpgcheck=1
 gpgkey=<%= $info['gpgkey'] %>
 <% } else { -%>
 gpgcheck=0
 <% } -%>
-<% if $info.has_key('proxy') { -%>
+<% if 'proxy' in $info { -%>
 proxy=<%= $info['proxy'] %>
 <% } -%>
-<% if $info.has_key('proxy_username') { -%>
+<% if 'proxy_username' in $info { -%>
 proxy_username=<%= $info['proxy_username'] %>
 <% } -%>
-<% if $info.has_key('proxy_password') { -%>
+<% if 'proxy_password' in $info { -%>
 proxy_password=<%= $info['proxy_password'] %>
 <% } -%>
-<% if $info.has_key('exclude') { -%>
+<% if 'exclude' in $info { -%>
 <% if $info['exclude'] =~ String { -%>
 exclude=<%= $info['exclude'] %>
 <% } elsif $info['exclude'] =~ Array { -%>
